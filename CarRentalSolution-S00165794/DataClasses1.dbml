@@ -1,0 +1,37 @@
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="CarRental_s00165794" Class="DataClasses1DataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="AppSettings" ConnectionString="Data Source=(localdb)\MSSQLLocalDB;AttachDbFilename=C:\Temp\Data\CarRental_s00165794.mdf;Integrated Security=True;Connect Timeout=60" SettingsObjectName="CarRentalSolution_S00165794.Properties.Settings" SettingsPropertyName="CarRental_s00165794ConnectionString" Provider="System.Data.SqlClient" />
+  <Table Name="dbo.Booking" Member="Bookings">
+    <Type Name="Booking">
+      <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="VIN" Type="System.String" DbType="Char(17) NOT NULL" CanBeNull="false" />
+      <Column Name="StartDate" Type="System.DateTime" DbType="Date NOT NULL" CanBeNull="false" />
+      <Column Name="EndDate" Type="System.DateTime" DbType="Date NOT NULL" CanBeNull="false" />
+      <Association Name="Car_Booking" Member="Car" ThisKey="VIN" OtherKey="VIN" Type="Car" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Car" Member="Cars">
+    <Type Name="Car">
+      <Column Name="VIN" Type="System.String" DbType="Char(17) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="Make" Type="System.String" DbType="VarChar(30) NOT NULL" CanBeNull="false" />
+      <Column Name="RegNumber" Type="System.String" DbType="VarChar(12)" CanBeNull="true" />
+      <Column Name="Model" Type="System.String" DbType="VarChar(30) NOT NULL" CanBeNull="false" />
+      <Column Name="Size" Type="System.String" DbType="VarChar(6)" CanBeNull="true" />
+      <Association Name="Car_Booking" Member="Bookings" ThisKey="VIN" OtherKey="VIN" Type="Booking" />
+    </Type>
+  </Table>
+  <Function Name="dbo.spCarsAvailabe" Method="spCarsAvailabe">
+    <Parameter Name="StartDate" Parameter="startDate" Type="System.DateTime" DbType="Date" />
+    <Parameter Name="EndDate" Parameter="endDate" Type="System.DateTime" DbType="Date" />
+    <ElementType Name="spCarsAvailabeResult">
+      <Column Name="VIN" Type="System.String" DbType="Char(17) NOT NULL" CanBeNull="false" />
+      <Column Name="Make" Type="System.String" DbType="VarChar(30) NOT NULL" CanBeNull="false" />
+      <Column Name="RegNumber" Type="System.String" DbType="VarChar(12)" CanBeNull="true" />
+      <Column Name="Model" Type="System.String" DbType="VarChar(30) NOT NULL" CanBeNull="false" />
+      <Column Name="Size" Type="System.String" DbType="VarChar(6)" CanBeNull="true" />
+      <Column Name="ID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="VIN1" Type="System.String" DbType="Char(17)" CanBeNull="true" />
+      <Column Name="StartDate" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="EndDate" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+    </ElementType>
+  </Function>
+</Database>
